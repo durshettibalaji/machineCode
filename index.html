@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cricbuzz</title>
+
+    <link rel="stylesheet" href="/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <ul id="container"></ul>
+      <table>
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Coin</th>
+            <th></th>
+            <th onclick="sortprice()">
+              Price
+              <i
+                class="fa-sharp fa-solid fa-arrow-down"
+                id="price"
+                
+              ></i>
+            </th>
+            <th onclick="sortmarket()">
+              MarketCap
+              <i
+                
+                id="market"
+                
+              ></i>
+            </th>
+            <th>Supply</th>
+            <th>Volume</th>
+            <th>
+              hour change
+              <i
+                class="fa-sharp fa-solid fa-arrow-down"
+                id="price"
+                onclick="sorthour()"
+              ></i>
+            </th>
+            <th>day change
+              <i
+              class="fa-sharp fa-solid fa-arrow-down"
+              id="price"
+              onclick="sortday()"
+            ></i>
+            </th>
+            <th>week change</th>
+            <th>favourt</th>
+          </tr>
+        </thead>
+        <tbody id="table"></tbody>
+      </table>
+    </div>
+    <div id="favlist"></div>
+    <script src="/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Dog Breed List</title>
+</head>
+
+<body>
+  <ul id="container"></ul>
+
+</body>
+
+</html> -->

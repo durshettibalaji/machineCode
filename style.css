@@ -1,0 +1,33 @@
+img{
+    height: 50px;
+    width: 50px;
+}
+.mystyle{
+    padding: 20px;
+    border-bottom: 1px solid rgba(116, 114, 114, 0.297);
+    /* background-color: rgba(248, 238, 238, 0.874); */
+    
+}
+table{
+    border-collapse: collapse;
+    border-spacing: 20px;
+}
+.suplly{
+    /* padding-left: 1%; */
+    /* padding-right: 1%; */
+     /* background-color: rgba(248, 238, 238, 0.874); */
+     text-align: center;
+     width: 200px;
+}
+.star{
+padding-left: 30px;
+font-size: 35px;
+color: rgb(12, 211, 222);
+/* background-color: aquamarine; */
+}
+
+.fill{
+color: gold;
+font-size: 35px;
+/* background-color: black; */
+}
