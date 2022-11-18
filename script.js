@@ -1,37 +1,52 @@
-
-let limit=100;
-const url = `https://api.coinstats.app/public/v1/coins?skip=0&limit=${limit}&currency=EUR`;
-
+let limit=20;
+let skip=0;
+let url = `https://api.coinstats.app/public/v1/coins?skip=${skip}&limit=${limit}&currency=EUR`;
 let coin_data={};
 let fprice="true";
 let fmarket="true";
-async function Main() {
- coin_data = await getCoinData(url).catch(catchError);
+let fhour="true";
+let fday="true";
+let favArry=[];
+async function viewmore(){
+limit+=20;
+url = `https://api.coinstats.app/public/v1/coins?skip=${skip}&limit=${limit}&currency=EUR`;
+coin_data = await getCoinData(url).catch(catchError);
   console.log(coin_data.coins.length);
   tofill(coin_data);
 }
-
+async function Main() {
+ coin_data = await getCoinData(url).catch(catchError); 
+  tofill(coin_data);
+}
 function catchError(err) {
   console.log('Error ', err);
 }
-
-
-
 async function getCoinData(_url) {
   const response = await fetch(_url);
   return await response.json();
 }
-
 Main();
-
 function sortprice(){
-  
+  let price=document.getElementById("price");
+  if(fprice=="true")
+  {
+    price.classList="fa-sharp fa-solid fa-arrow-down";
   coin_data.coins.sort( (a, b) => {
         return a.price - b.price;
       });
+      fprice="false";
       tofill(coin_data);
+    }
+    else
+    {
+      price.classList="fa-sharp fa-solid fa-arrow-up";
+    coin_data.coins.sort( (a, b) => {
+          return b.price - a.price;
+        });
+        fprice="true";
+        tofill(coin_data);
+      }
 }
-
 function sortmarket()
 {
   let market=document.getElementById("market");
@@ -39,7 +54,6 @@ function sortmarket()
   {
    market.classList="fa-sharp fa-solid fa-arrow-down";
   coin_data.coins.sort( (a, b) => {
-    console.log(fmarket,"balajidd");
     return a.marketCap - b.marketCap;
   });
   fmarket="false";
@@ -47,7 +61,6 @@ function sortmarket()
 }
 else{
    market.classList="fa-sharp fa-solid fa-arrow-up";
-  console.log(fmarket,"balaji");
   coin_data.coins.sort( (a, b) => {
     return b.marketCap - a.marketCap;
   });
@@ -55,36 +68,58 @@ else{
   tofill(coin_data);
 }
 }
-
 function sorthour(){
+  let hour=document.getElementById("hour");
+  if(fhour=="true")
+  {
+    hour.classList="fa-sharp fa-solid fa-arrow-down";
   coin_data.coins.sort( (a, b) => {
     return a.priceChange1h - b.priceChange1h;
   });
+  fhour="false";
   tofill(coin_data);
 }
-
+else{
+  hour.classList="fa-sharp fa-solid fa-arrow-up";
+  coin_data.coins.sort( (a, b) => {
+    return b.priceChange1h - a.priceChange1h;
+  });
+  fhour="true";
+  tofill(coin_data);
+}
+}
 function sortday(){
+  let day=document.getElementById("day");
+  if(fday=="true")
+  {
+    day.classList="fa-sharp fa-solid fa-arrow-down";
   coin_data.coins.sort( (a, b) => {
     return a.priceChange1d - b.priceChange1d;
   });
+  fday="false";
   tofill(coin_data);
-
 }
-
+else{
+  day.classList="fa-sharp fa-solid fa-arrow-up";
+  coin_data.coins.sort( (a, b) => {
+    return b.priceChange1d - a.priceChange1d;
+  });
+  fday="true";
+  tofill(coin_data);
+}
+}
 async function tofill(coin_data)
 {
   let table=document.getElementById("table");
+  table.innerHTML="";
 for(let i=0;i<coin_data.coins.length;i++)
 {
   let coin=coin_data.coins[i];
   var row = table.insertRow(i);
 var cell1 = row.insertCell();
-
 cell1.innerHTML = coin.rank;
-
 var x=row.insertCell();
   x.innerHTML="";
-
   var img = document.createElement('img');
   img.src = coin.icon;
   x.appendChild(img);
@@ -107,14 +142,28 @@ var x=row.insertCell();
   var cell10=row.insertCell();
   cell10.innerHTML=`${coin.priceChange1w}%`;
   var cell8=row.insertCell();
-  cell8.addEventListener('click',(e)=>{
-    e.target.classList.toggle("fill");
-    console.log("hello");
+  cell8.addEventListener('click',(e)=>{    
+    if(favArry.length>=3 && !favArry.includes(coin.id))
+    {
+      window.alert("you already choose three coins") 
+    }
+   else if(favArry.includes(coin.id))
+    {
+      e.target.classList.toggle("fill");
+     favArry= favArry.filter((ele)=>
+      {
+        if(ele!==coin.id)
+        return ele;
+      }
+      );  
+    }
+    else{
+      e.target.classList.toggle("fill");
+      favArry.push(coin.id);
+    }
+   tofill1(); 
   })
   cell8.innerHTML="&#9733";
-
-
-//   console.log(day_change.chart[0][1]);
   cell6.classList.add("suplly");
   cell4.classList.add("suplly");
   cell3.classList.add("suplly");
@@ -123,12 +172,23 @@ var x=row.insertCell();
   
 }
 }
-
-
-let favs= Array.from(document.getElementsByClassName("star"));
-favs.map((ele)=>{
-    ele.addEventListener("click", (e) => {
-      console.log("heyyyy");
-         e.target.classList.toggle("fill");
-    })
-})
+function tofill1()
+{
+  let table2=document.getElementById("table2");
+  table2.innerHTML="";
+  for(let i=0;i<favArry.length;i++)
+  {
+    var row=table2.insertRow(i);
+    var no=row.insertCell(0);
+    no.innerHTML=i+1;
+    var name=row.insertCell(1);
+    name.innerHTML=favArry[i];
+    no.classList.add("tab2");
+    name.classList.add("tab2");
+  }
+}
+function clearAll()
+{
+  favArry=[];
+  tofill1();
+}

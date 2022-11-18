@@ -1,3 +1,8 @@
+body{
+    height: 100vh;
+    width: 100vw;
+    background-color: aqua;
+}
 img{
     height: 50px;
     width: 50px;
@@ -5,17 +10,16 @@ img{
 .mystyle{
     padding: 20px;
     border-bottom: 1px solid rgba(116, 114, 114, 0.297);
-    /* background-color: rgba(248, 238, 238, 0.874); */
+   
     
 }
 table{
     border-collapse: collapse;
     border-spacing: 20px;
+    border: 1px solid black;
 }
 .suplly{
-    /* padding-left: 1%; */
-    /* padding-right: 1%; */
-     /* background-color: rgba(248, 238, 238, 0.874); */
+    
      text-align: center;
      width: 200px;
 }
@@ -23,11 +27,44 @@ table{
 padding-left: 30px;
 font-size: 35px;
 color: rgb(12, 211, 222);
-/* background-color: aquamarine; */
+
 }
 
 .fill{
 color: gold;
 font-size: 35px;
-/* background-color: black; */
+
 }
+#fav{
+    height: auto;
+    z-index: 2;
+    border: 1px solid black;
+
+}
+
+table
+{
+    border: 2px solid rgb(253, 251, 251);
+    z-index: 1;
+}
+#but{
+    margin: 0 auto;
+    display: block;
+    color:white;
+    border-radius: 20px;
+    background-color: #0d6efd;
+    border: 2px solid #6ba0f0;
+    padding: 0.5%;
+  
+}
+.tab2{
+    margin-left: 40px;
+    text-align: center;
+
+}
+#img1{
+    width: 100%;
+    height: 400px;
+    margin-top: 30px;
+}
+
