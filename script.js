@@ -169,7 +169,6 @@ var x=row.insertCell();
   cell3.classList.add("suplly");
   cell7.classList.add("suplly");
   cell8.classList.add("star");
-  
 }
 }
 function tofill1()
