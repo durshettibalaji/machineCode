@@ -142,24 +142,30 @@ var x=row.insertCell();
   var cell10=row.insertCell();
   cell10.innerHTML=`${coin.priceChange1w}%`;
   var cell8=row.insertCell();
-  cell8.addEventListener('click',(e)=>{    
-    if(favArry.length>=3 && !favArry.includes(coin.id))
+  if(iscontains(favArry,coin.id))
+  cell8.classList.add("fill");
+
+  cell8.addEventListener('click',(e)=>{ 
+    console.log(iscontains(favArry,coin.id));   
+    if(favArry.length>=3 && !iscontains(favArry,coin.id))
     {
       window.alert("you already choose three coins") 
     }
-   else if(favArry.includes(coin.id))
+   else if(favArry.includes(coin))
     {
-      e.target.classList.toggle("fill");
+      e.target.classList.remove("fill");
+   
      favArry= favArry.filter((ele)=>
       {
-        if(ele!==coin.id)
+        if(ele.id!==coin.id)
         return ele;
       }
       );  
     }
     else{
-      e.target.classList.toggle("fill");
-      favArry.push(coin.id);
+      e.target.classList.add("fill");
+   
+      favArry.push(coin);
     }
    tofill1(); 
   })
@@ -180,8 +186,13 @@ function tofill1()
     var row=table2.insertRow(i);
     var no=row.insertCell(0);
     no.innerHTML=i+1;
-    var name=row.insertCell(1);
-    name.innerHTML=favArry[i];
+    var x=row.insertCell(1);
+  x.innerHTML="";
+  var img = document.createElement('img');
+  img.src = favArry[i].icon;
+  x.appendChild(img);
+    var name=row.insertCell(2);
+    name.innerHTML=favArry[i].id;
     no.classList.add("tab2");
     name.classList.add("tab2");
   }
@@ -190,4 +201,22 @@ function clearAll()
 {
   favArry=[];
   tofill1();
+}
+
+function iscontains(arr,a)
+{
+//  console.log(arr.length);
+  for(var i=0;i<favArry.length;i++)
+  {
+    // console.log(a,arr[i].id);
+  if(arr[i].id==a)
+  {
+    // console.log(arr[i].id);
+    // cell8.classList.add("fill");
+    return true;
+  }
+  
+  
+}
+return false;
 }
