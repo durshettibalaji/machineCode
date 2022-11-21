@@ -11,9 +11,9 @@ async function viewmore(){
 skip+=20;
 limit=20;
 url = `https://api.coinstats.app/public/v1/coins?skip=${skip}&limit=${limit}&currency=EUR`;
-coin_data = await getCoinData(url).catch(catchError);
-  console.log(coin_data.coins.length);
-  tofillview(coin_data);
+ coin_data1 = await getCoinData(url).catch(catchError);
+  tofillview(coin_data1);
+  coin_data.coins=[...coin_data.coins,...coin_data1.coins];
 }
 async function Main() {
  coin_data = await getCoinData(url).catch(catchError); 
@@ -169,8 +169,7 @@ var x=row.insertCell();
   if(iscontains(favArry,coin.id))
   cell8.classList.add("fill");
 
-  cell8.addEventListener('click',(e)=>{ 
-    console.log(iscontains(favArry,coin.id));   
+  cell8.addEventListener('click',(e)=>{   
     if(favArry.length>=3 && !iscontains(favArry,coin.id))
     {
       window.alert("you already choose three coins") 
@@ -285,8 +284,7 @@ var x=row.insertCell();
   if(iscontains(favArry,coin.id))
   cell8.classList.add("fill");
 
-  cell8.addEventListener('click',(e)=>{ 
-    console.log(iscontains(favArry,coin.id));   
+  cell8.addEventListener('click',(e)=>{  
     if(favArry.length>=3 && !iscontains(favArry,coin.id))
     {
       window.alert("you already choose three coins") 

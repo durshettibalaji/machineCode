@@ -67,7 +67,7 @@
       </nav>
     </header>
     <div id="fav" class="container">
-      <h1>Favourt coins</h1>
+      <h1>Favourite coins</h1>
       <table class="table" >
         <thead>
           <tr>
@@ -82,12 +82,12 @@
     </div>
     <div  class="container">
       <ul id="container"></ul>
-      <table class="table">
+      <table class="table " style=" width: 100%;">
         <thead>
           <tr>
             <th scope="col">Rank</th>
             <th scope="col">Coin</th>
-            <th scope="col">name</th>
+            <th scope="col">Name</th>
             <th onclick="sortprice()" >
               Price
               <i id="price" class="fa-sharp fa-solid fa-arrow-down"></i>
@@ -99,15 +99,15 @@
             <th scope="col">Supply</th>
             <th scope="col">Volume</th>
             <th onclick="sorthour()" scope="col">
-              hour change
+              Hour
               <i class="fa-sharp fa-solid fa-arrow-down" id="hour"></i>
             </th>
             <th onclick="sortday()" scope="col">
-              day change
+              Day
               <i class="fa-sharp fa-solid fa-arrow-down" id="day"></i>
             </th>
-            <th scope="col">week change</th>
-            <th scope="col">favourt</th>
+            <th scope="col">Week</th>
+            <th scope="col">Favourite</th>
           </tr>
         </thead>
         <tbody id="table"></tbody>
