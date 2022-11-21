@@ -49,3 +49,6 @@ font-size: 35px;
 }
 
 
+.mystyle:hover{
+    background-color: rgb(245, 243, 236,0.5);
+}
