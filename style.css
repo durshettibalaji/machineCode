@@ -1,7 +1,7 @@
 body{
     height: 100vh;
     width: 100vw;
-    background-color: aqua;
+    /* background-color: aqua; */
 }
 img{
     height: 50px;
@@ -11,13 +11,14 @@ img{
     padding: 20px;
     border-bottom: 1px solid rgba(116, 114, 114, 0.297);    
 }
-table{
-    border-collapse: collapse;
-    border-spacing: 20px;
-    border: 1px solid black;
-}
+/* table,th,td,tr{
+    /* border-collapse: collapse; */
+    /* border-spacing: 20px;
+    border: 5px solid black;
+
+} * */
 .suplly{
-     text-align: center;
+     text-align: left;
      width: 200px;
 }
 .star{
@@ -36,11 +37,7 @@ font-size: 35px;
     border: 1px solid black;
 
 }
-table
-{
-    border: 2px solid rgb(253, 251, 251);
-    z-index: 1;
-}
+
 #but{
     margin: 0 auto;
     display: block;
@@ -62,3 +59,25 @@ table
     margin-top: 30px;
 }
 
+/* thead > th{
+    text-align: center ;
+    word-wrap: break-word;
+}
+
+tbody td{
+    color: aqua;
+    text-align: center ;
+    word-wrap: break-word;
+    width: max-content;
+} */
+
+  .leftmov{
+     
+     padding-left: 80px;
+    /* color: aquamarine; */
+}  
+
+/* table th{
+    padding-left: 180px;
+    color: #0d6efd;
+} */

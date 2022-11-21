@@ -8,11 +8,12 @@ let fhour="true";
 let fday="true";
 let favArry=[];
 async function viewmore(){
-limit+=20;
+skip+=20;
+limit=20;
 url = `https://api.coinstats.app/public/v1/coins?skip=${skip}&limit=${limit}&currency=EUR`;
 coin_data = await getCoinData(url).catch(catchError);
   console.log(coin_data.coins.length);
-  tofill(coin_data);
+  tofillview(coin_data);
 }
 async function Main() {
  coin_data = await getCoinData(url).catch(catchError); 
@@ -26,6 +27,11 @@ async function getCoinData(_url) {
   return await response.json();
 }
 Main();
+
+
+
+
+
 function sortprice(){
   let price=document.getElementById("price");
   if(fprice=="true")
@@ -47,6 +53,10 @@ function sortprice(){
         tofill(coin_data);
       }
 }
+
+
+
+
 function sortmarket()
 {
   let market=document.getElementById("market");
@@ -68,6 +78,10 @@ else{
   tofill(coin_data);
 }
 }
+
+
+
+
 function sorthour(){
   let hour=document.getElementById("hour");
   if(fhour=="true")
@@ -88,6 +102,9 @@ else{
   tofill(coin_data);
 }
 }
+
+
+
 function sortday(){
   let day=document.getElementById("day");
   if(fday=="true")
@@ -108,6 +125,10 @@ else{
   tofill(coin_data);
 }
 }
+
+
+
+
 async function tofill(coin_data)
 {
   let table=document.getElementById("table");
@@ -123,25 +144,28 @@ var x=row.insertCell();
   var img = document.createElement('img');
   img.src = coin.icon;
   x.appendChild(img);
+
   var cell2 = row.insertCell();
-  cell2.innerHTML = coin.id;
+  cell2.innerHTML = coin.name;
   var cell3=row.insertCell(3);
-  cell3.innerHTML=`${"$"} ${coin.price.toFixed(2) }`;
+  cell3.innerHTML=`${"$"}${coin.price.toFixed(2)}`;
+  
   var cell4=row.insertCell(4);
-  cell4.innerHTML=`${"$"} ${coin.marketCap.toFixed(2)}`;
-  var cell5=row.insertCell();
+  cell4.innerHTML=`${"$"}${coin.marketCap.toFixed(2)}`;
+  var cell5=row.insertCell(5);
+  
   cell5.innerHTML=coin.totalSupply;
   cell5.classList.add("suplly")
   row.classList.add("mystyle")
-  var cell6=row.insertCell();
+  var cell6=row.insertCell(6);
   cell6.innerHTML=`${coin.volume?.toFixed(2)}`;
-  var cell7=row.insertCell();
+  var cell7=row.insertCell(7);
   cell7.innerHTML=`${coin.priceChange1h}%`;
-  var cell9=row.insertCell();
+  var cell9=row.insertCell(8);
   cell9.innerHTML=`${coin.priceChange1d}%`;
-  var cell10=row.insertCell();
+  var cell10=row.insertCell(9);
   cell10.innerHTML=`${coin.priceChange1w}%`;
-  var cell8=row.insertCell();
+  var cell8=row.insertCell(10);
   if(iscontains(favArry,coin.id))
   cell8.classList.add("fill");
 
@@ -175,8 +199,14 @@ var x=row.insertCell();
   cell3.classList.add("suplly");
   cell7.classList.add("suplly");
   cell8.classList.add("star");
+  
+
 }
 }
+
+
+
+
 function tofill1()
 {
   let table2=document.getElementById("table2");
@@ -192,31 +222,100 @@ function tofill1()
   img.src = favArry[i].icon;
   x.appendChild(img);
     var name=row.insertCell(2);
-    name.innerHTML=favArry[i].id;
-    no.classList.add("tab2");
-    name.classList.add("tab2");
+    name.innerHTML=favArry[i].name;
+    
+    
   }
 }
-function clearAll()
-{
-  favArry=[];
-  tofill1();
-}
+
 
 function iscontains(arr,a)
 {
-//  console.log(arr.length);
   for(var i=0;i<favArry.length;i++)
   {
-    // console.log(a,arr[i].id);
   if(arr[i].id==a)
   {
-    // console.log(arr[i].id);
-    // cell8.classList.add("fill");
     return true;
-  }
-  
-  
+  }  
 }
 return false;
+}
+
+
+
+
+
+async function tofillview(coin_data)
+{
+  let table=document.getElementById("table");
+  // table.innerHTML="";
+for(let i=0;i<coin_data.coins.length;i++)
+{
+  let coin=coin_data.coins[i];
+  var row = table.insertRow();
+var cell1 = row.insertCell();
+cell1.innerHTML = coin.rank;
+var x=row.insertCell();
+  x.innerHTML="";
+  var img = document.createElement('img');
+  img.src = coin.icon;
+  x.appendChild(img);
+
+  var cell2 = row.insertCell();
+  cell2.innerHTML = coin.name;
+  var cell3=row.insertCell(3);
+  cell3.innerHTML=`${"$"}${coin.price.toFixed(2)}`;
+  
+  var cell4=row.insertCell(4);
+  cell4.innerHTML=`${"$"}${coin.marketCap.toFixed(2)}`;
+  var cell5=row.insertCell(5);
+  
+  cell5.innerHTML=coin.totalSupply;
+  cell5.classList.add("suplly")
+  row.classList.add("mystyle")
+  var cell6=row.insertCell(6);
+  cell6.innerHTML=`${coin.volume?.toFixed(2)}`;
+  var cell7=row.insertCell(7);
+  cell7.innerHTML=`${coin.priceChange1h}%`;
+  var cell9=row.insertCell(8);
+  cell9.innerHTML=`${coin.priceChange1d}%`;
+  var cell10=row.insertCell(9);
+  cell10.innerHTML=`${coin.priceChange1w}%`;
+  var cell8=row.insertCell(10);
+  if(iscontains(favArry,coin.id))
+  cell8.classList.add("fill");
+
+  cell8.addEventListener('click',(e)=>{ 
+    console.log(iscontains(favArry,coin.id));   
+    if(favArry.length>=3 && !iscontains(favArry,coin.id))
+    {
+      window.alert("you already choose three coins") 
+    }
+   else if(favArry.includes(coin))
+    {
+      e.target.classList.remove("fill");
+   
+     favArry= favArry.filter((ele)=>
+      {
+        if(ele.id!==coin.id)
+        return ele;
+      }
+      );  
+    }
+    else{
+      e.target.classList.add("fill");
+   
+      favArry.push(coin);
+    }
+   tofill1(); 
+  })
+  cell8.innerHTML="&#9733";
+  cell6.classList.add("suplly");
+  cell4.classList.add("suplly");
+  cell3.classList.add("suplly");
+  cell7.classList.add("suplly");
+  cell8.classList.add("star");
+  
+
+}
 }
